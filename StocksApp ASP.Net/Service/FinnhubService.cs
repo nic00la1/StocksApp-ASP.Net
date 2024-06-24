@@ -1,17 +1,20 @@
 ﻿using System.Text.Json;
+using StocksApp_ASP.Net.ServiceContracts;
 
 namespace StocksApp_ASP.Net.Services;
 
-public class MyService
+public class FinnhubService : IFinhhubService
 {
     private readonly IHttpClientFactory _httpClientFactory;
 
-    public MyService(IHttpClientFactory httpClientFactory)
+    public FinnhubService(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
     }
 
-    public async Task method()
+    public async Task<Dictionary<string, object>?> GetStockPriceQuote(
+        string stockSymbol
+    )
     {
         using (HttpClient httpClient = _httpClientFactory.CreateClient())
         {
@@ -19,7 +22,7 @@ public class MyService
             {
                 RequestUri =
                     new Uri(
-                        "https://finnhub.io/api/v1/quote?symbol=AAPL&token=cpsk8a9r01qkode1lnr0cpsk8a9r01qkode1lnrg"),
+                        $"https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token=cpsk8a9r01qkode1lnr0cpsk8a9r01qkode1lnrg"),
                 Method = HttpMethod.Get
             };
 
@@ -36,6 +39,15 @@ public class MyService
                 JsonSerializer
                     .Deserialize<Dictionary<string, object>>(response);
 
+            if (responseDictionary == null)
+                throw new InvalidOperationException(
+                    "No response from finnhub server!");
+
+            if (responseDictionary.ContainsKey("error"))
+                throw new InvalidOperationException(
+                    Convert.ToString(responseDictionary["error"]));
+
+            return responseDictionary;
         }
     }
 }

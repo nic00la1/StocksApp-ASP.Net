@@ -4,7 +4,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<MyService>();
+builder.Services.AddScoped<FinnhubService>();
 
 WebApplication app = builder.Build();
 
