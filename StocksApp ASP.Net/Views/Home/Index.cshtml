@@ -1,5 +1,58 @@
-﻿@{
+﻿@model StocksApp_ASP.Net.Models.Stock
+@{
     ViewBag.Title = "Home Page";
 }
 
 <h1>Home</h1>
+<div class="box trading-panel">
+    <div class="flex trading-panel-flex">
+        <div id="stock-price-panel">
+            <div class="stock">
+                <h1 class="stock-title">@Model.Symbol</h1>
+                
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>Current Price:</td>
+                        <th>
+                            <small>$</small>
+                            <span> 
+                                <th>@Model.CurrentPrice.ToString("N")</th>
+                            </span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Highest Price:</td>
+                        <th>
+                            <small>$</small>
+                            <span>
+                                <th>@Model.HighestPrice.ToString("N")</th>
+                            </span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Lowest Price:</td>
+                        <th>
+                            <small>$</small>
+                            <span>
+                                <th>@Model.LowestPrice.ToString("N")</th>
+                            </span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>Open Price:</td>
+                        <th>
+                            <small>$</small>
+                            <span>
+                                <th>@Model.OpenPrice.ToString("N")</th>
+                            </span>
+                        </th>
+                    </tr>
+                    
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

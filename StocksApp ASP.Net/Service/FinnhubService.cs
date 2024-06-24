@@ -26,7 +26,7 @@ public class FinnhubService : IFinhhubService
             {
                 RequestUri =
                     new Uri(
-                        $"https://finnhub.io/api/v1/quote?symbol=${stockSymbol}&token={_configuration["FinnhubToken"]}"),
+                        $"https://finnhub.io/api/v1/quote?symbol={stockSymbol}&token={_configuration["FinnhubToken"]}"),
                 Method = HttpMethod.Get
             };
 
