@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>StocksApp_ASP.Net</RootNamespace>
+    <UserSecretsId>7ed28623-c1fd-45be-9fd3-c81b080e68ec</UserSecretsId>
   </PropertyGroup>
 
 </Project>
